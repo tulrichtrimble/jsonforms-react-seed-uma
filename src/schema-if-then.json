@@ -1,0 +1,123 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "type": "object",
+    "properties": {
+        "companies": {
+            "type": "array",
+            "items": {
+                "type": "object",
+                "properties": {
+                    "company": {
+                        "type": "string",
+                        "enum": [
+                            "Company1",
+                            "Company2"
+                        ]
+                    },
+                    "cost-centers": {
+                        "type": "array",
+                        "uniqueItems": true,
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "cost-center": {
+                                    "enum": [
+                                        "1050",
+                                        "1051",
+                                        "1099",
+                                        "General"
+                                    ]
+                                },
+                                "role": {
+                                    "$ref": "#/$defs/role"
+                                }
+                            },
+                            "required": [
+                                "cost-center"
+                            ]
+                        }
+                    }
+                },
+                "uniqueItems": true
+            },
+            "required": [
+                "company",
+                "cost-centers"
+            ],
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "company": {
+                                "const": "Company1"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "cost-centers": {
+                                "items": {
+                                    "properties": {
+                                        "cost-center": {
+                                            "enum": [
+                                                "1050",
+                                                "1051",
+                                                "General"
+                                            ]
+                                        },
+                                        "role": {
+                                            "$ref": "#/$defs/role"
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "company": {
+                                "const": "Company2"
+                            }
+                        }
+                    },
+                    "then": {
+                        "properties": {
+                            "cost-centers": {
+                                "items": {
+                                    "properties": {
+                                        "cost-center": {
+                                            "enum": [
+                                                "1099",
+                                                "General"
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        }
+    },
+    "required": [
+        "companies"
+    ],
+    "$defs": {
+        "role": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "Accountant",
+                    "Account Payable Clerk",
+                    "Manager",
+                    "Project Manager"
+                ]
+            }
+        }
+    }
+}

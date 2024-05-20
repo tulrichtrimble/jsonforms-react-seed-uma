@@ -1,0 +1,30 @@
+{
+    "Companies": [
+        {
+            "Company": "Company1",
+            "cost-centers": [
+                {
+                    "cost-center": "1050",
+                    "role": "Manager"
+                },
+                {
+                    "cost-center": "General",
+                    "role": "Project Manager"
+                }
+            ]
+        },
+        {
+            "Company": "Company2",
+            "cost-centers": [
+                {
+                    "cost-center": "1099",
+                    "role": "Manager"
+                },
+                {
+                    "cost-center": "General",
+                    "role": "Accountant"
+                }
+            ]
+        }
+    ]
+}

@@ -1,32 +1,100 @@
 {
-  "type": "object",
-  "properties": {
-    "name": {
-      "type": "string",
-      "minLength": 1
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "properties": {
+        "Companies": {
+            "type": "array",
+            "items": {
+                "anyOf": [
+                    {
+                        "properties": {
+                            "Company1": {
+                                "title": "Company1",
+                                "properties": {
+                                    "cost-centers": {
+                                        "items": {
+                                            "properties": {
+                                                "cost-center": {
+                                                    "enum": [
+                                                        "1050",
+                                                        "1051",
+                                                        "General"
+                                                    ]
+                                                },
+                                                "role": {
+                                                    "$ref": "#/$defs/role"
+                                                }
+                                            },
+                                            "required": [
+                                                "cost-center",
+                                                "role"
+                                            ],
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "cost-centers"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    },
+                    {
+                        "properties": {
+                            "Company1": {
+                                "title": "Company2",
+                                "properties": {
+                                    "cost-centers": {
+                                        "items": {
+                                            "properties": {
+                                                "cost-center": {
+                                                    "enum": [
+                                                        "1099",
+                                                        "1051",
+                                                        "General"
+                                                    ]
+                                                },
+                                                "role": {
+                                                    "$ref": "#/$defs/role"
+                                                }
+                                            },
+                                            "required": [
+                                                "cost-center",
+                                                "role"
+                                            ],
+                                            "additionalProperties": false
+                                        }
+                                    }
+                                },
+                                "required": [
+                                    "cost-centers"
+                                ],
+                                "additionalProperties": false
+                            }
+                        },
+                        "additionalProperties": false
+                    }
+                ]
+            }
+        }
     },
-    "description": {
-      "title": "Long Description",
-      "type": "string"
-    },
-    "done": {
-      "type": "boolean"
-    },
-    "due_date": {
-      "type": "string",
-      "format": "date"
-    },
-    "rating": {
-      "type": "integer",
-      "maximum": 5
-    },
-    "recurrence": {
-      "type": "string",
-      "enum": ["Never", "Daily", "Weekly", "Monthly"]
-    },
-    "recurrence_interval": {
-      "type": "integer"
+    "required": [
+        "Companies"
+    ],
+    "$defs": {
+        "role": {
+            "type": "array",
+            "uniqueItems": true,
+            "items": {
+                "type": "string",
+                "enum": [
+                    "Accountant",
+                    "Account Payable Clerk",
+                    "Manager",
+                    "Project Manager"
+                ]
+            }
+        }
     }
-  },
-  "required": ["name", "due_date"]
 }
