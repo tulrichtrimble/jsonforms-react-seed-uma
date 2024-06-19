@@ -3,6 +3,7 @@
     "properties": {
         "Companies": {
             "type": "array",
+            "uniqueItems": true,
             "items": {
                 "anyOf": [
                     {
